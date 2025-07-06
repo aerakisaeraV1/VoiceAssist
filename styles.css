@@ -2864,3 +2864,34 @@ section {
     height: 85vh !important;
   }
 }
+
+/* Contrast Toggle Button */
+.contrast-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-primary, #333);
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 0.75rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contrast-toggle:hover,
+.contrast-toggle.active {
+  color: orange;
+  transform: scale(1.1);
+}
+
+/* Contrast mode override */
+body.high-contrast {
+  --text-primary: #000;
+  --text-secondary: #222;
+  --text-accent: #000;
+  color: var(--text-primary) !important;
+}
+
+/* Optional: Apply to text globally */
+body.high-contrast * {
+  color: var(--text-primary) !important;
+}
+

@@ -1171,3 +1171,27 @@ window.addEventListener('keydown', function (e) {
     closeGoalballModal();
   }
 });
+
+function toggleContrast() {
+  document.body.classList.toggle('high-contrast');
+  const btn = document.querySelector('.contrast-toggle');
+  btn.classList.toggle('active');
+
+  // Save user preference
+  if (document.body.classList.contains('high-contrast')) {
+    localStorage.setItem('contrastMode', 'enabled');
+  } else {
+    localStorage.setItem('contrastMode', 'disabled');
+  }
+}
+
+// Restore saved preference
+document.addEventListener('DOMContentLoaded', () => {
+  const contrastPref = localStorage.getItem('contrastMode');
+  if (contrastPref === 'enabled') {
+    document.body.classList.add('high-contrast');
+    const btn = document.querySelector('.contrast-toggle');
+    if (btn) btn.classList.add('active');
+  }
+});
+

@@ -253,5 +253,27 @@
     </footer>
 
     <script src="script.js"></script>
+    <div class="voice-assistant">
+  <button class="voice-assistant-toggle" id="voiceToggleBtn">
+    <i class="fas fa-microphone"></i>
+  </button>
+  <div class="voice-assistant-panel" id="voicePanel">
+    <!-- Header -->
+    <div class="assistant-header">
+      <div class="assistant-avatar"><i class="fas fa-robot"></i></div>
+      <div class="assistant-info">
+        <h3>Voice Assistant</h3>
+        <p class="assistant-status" id="assistantStatus">Idle</p>
+      </div>
+    </div>
+    <!-- Message Area -->
+    <div class="assistant-content" id="assistantMessages"></div>
+    <!-- Controls -->
+    <div class="assistant-controls">
+      <button class="assistant-btn" onclick="startReading()">🔊 Read Page</button>
+      <button class="assistant-btn" onclick="readNextSection()">➡️ Next Section</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

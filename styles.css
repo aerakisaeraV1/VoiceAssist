@@ -1223,65 +1223,30 @@ section {
 }
 
 /* SECTION: Voice Assistant Chatbot */
-.voice-assistant {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 1000;
-}
 
 .voice-assistant-toggle {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   border: none;
-  color: var(--text-white);
-  font-size: 1.5rem;
+  color: var(--text-light);
+  font-size: var(--font-size-xl);
   cursor: pointer;
-  box-shadow: 0 4px 20px var(--shadow-medium);
-  transition: all var(--transition-base);
+  box-shadow: var(--shadow-medium), var(--glow-primary);
+  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.voice-assistant-toggle::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
 .voice-assistant-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 25px var(--shadow-dark);
-}
-
-.voice-assistant-toggle:hover::before {
-  opacity: 1;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-heavy), var(--glow-primary);
 }
 
 .voice-assistant-toggle.active {
-  animation: assistantPulse 1.5s ease-in-out infinite;
-}
-
-@keyframes assistantPulse {
-  0%, 100% { 
-    transform: scale(1);
-    box-shadow: 0 4px 20px var(--shadow-medium);
-  }
-  50% { 
-    transform: scale(1.05);
-    box-shadow: 0 6px 30px rgba(231, 76, 60, 0.6);
-  }
+  animation: pulse-glow 1s infinite;
 }
 
 .voice-assistant-panel {
@@ -1290,120 +1255,121 @@ section {
   right: 0;
   width: 350px;
   max-height: 500px;
-  background: var(--bg-secondary);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--border-light);
-  box-shadow: 0 10px 40px var(--shadow-dark);
+  background: var(--bg-overlay);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-heavy);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px) scale(0.9);
-  transition: all var(--transition-base);
-  backdrop-filter: blur(20px);
+  transform: translateY(20px);
+  transition: all var(--transition-normal);
+  overflow: hidden;
 }
 
 .voice-assistant-panel.active {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
 .assistant-header {
-  padding: var(--spacing-lg);
-  border-bottom: 1px solid var(--border-light);
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-secondary);
 }
 
 .assistant-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-white);
-  font-size: 1.2rem;
+  color: var(--text-light);
+  font-size: var(--font-size-lg);
 }
 
 .assistant-info h3 {
   color: var(--text-primary);
-  font-size: 1.1rem;
-  margin-bottom: 2px;
+  margin: 0;
+  font-size: var(--font-size-base);
 }
 
 .assistant-status {
+  font-size: var(--font-size-sm);
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  margin: 0;
 }
 
 .assistant-status.listening {
   color: var(--primary-color);
-  animation: statusBlink 1s ease-in-out infinite;
-}
-
-@keyframes statusBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  font-weight: 600;
 }
 
 .assistant-content {
-  padding: var(--spacing-lg);
   max-height: 300px;
   overflow-y: auto;
-}
-
-.assistant-message {
-  margin-bottom: var(--spacing-md);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md);
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.assistant-message.bot {
-  background: rgba(231, 76, 60, 0.1);
-  color: var(--text-primary);
-  border-left: 3px solid var(--primary-color);
-}
-
-.assistant-message.user {
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-  text-align: right;
-  border-right: 3px solid var(--secondary-color);
-}
-
-.assistant-controls {
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-top: 1px solid var(--border-light);
+  padding: var(--spacing-sm);
   display: flex;
+  flex-direction: column;
   gap: var(--spacing-sm);
 }
 
-.assistant-btn {
-  flex: 1;
+.assistant-message {
   padding: var(--spacing-sm);
-  border: 1px solid var(--border-medium);
-  background: var(--bg-primary);
+  border-radius: 12px;
+  max-width: 80%;
+  word-wrap: break-word;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+.assistant-message.user {
+  background: var(--primary-color);
+  color: var(--text-light);
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.assistant-message.bot {
+  background: var(--bg-secondary);
   color: var(--text-primary);
-  border-radius: var(--radius-md);
+  align-self: flex-start;
+}
+
+.assistant-controls {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+}
+
+.assistant-btn {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: var(--spacing-xs);
   cursor: pointer;
-  transition: all var(--transition-base);
-  font-size: 0.8rem;
+  transition: all var(--transition-fast);
+  color: var(--text-primary);
+  font-size: var(--font-size-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
 .assistant-btn:hover {
   background: var(--primary-color);
-  color: var(--text-white);
-  border-color: var(--primary-color);
-}
-
-.assistant-btn.active {
-  background: var(--primary-color);
-  color: var(--text-white);
-  border-color: var(--primary-color);
+  color: var(--text-light);
+  transform: translateY(-1px);
 }
 
 /* SECTION: Accessibility Enhancements */
